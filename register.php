@@ -33,7 +33,7 @@ include "libs/database.php";
                 <span class="fas fa-key"></span>
                 <input type="password" name="password" id="pwd" placeholder="Password">
             </div>
-            <button class="btn mt-3">Login</button>
+            <button class="btn mt-3">Sign Up</button>
         </form>
         <?php 
         if(isset($_GET['messageError'])){

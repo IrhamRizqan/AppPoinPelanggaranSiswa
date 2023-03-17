@@ -1,9 +1,10 @@
-<?php 
+<?php
 include "../libs/database.php";
 session_start();
-if($_SESSION['status'] != "Logged"){
+if ($_SESSION['status'] != "Logged") {
   header("location: login.php?messageError= Silahkan Login terlebih dahulu");
 }
+$datas = mysqli_query($db, "SELECT * FROM `siswa`");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@ if($_SESSION['status'] != "Logged"){
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Tabel
+    Data Siswa
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -32,7 +33,7 @@ if($_SESSION['status'] != "Logged"){
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.php " target="_blank">
+      <a class="navbar-brand m-0" href="dashboard.php " target="_blank">
         <span class="ms-1 font-weight-bold">E-Lapel</span>
       </a>
     </div>
@@ -43,7 +44,7 @@ if($_SESSION['status'] != "Logged"){
           <a class="nav-link  " href="../pages/dashboard.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>shop </title>
+                <title>Dashboard</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -60,10 +61,10 @@ if($_SESSION['status'] != "Logged"){
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  active" href="../pages/tables.html">
+          <a class="nav-link  active" href="#">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>office</title>
+                <title>Data-Siswa</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -76,14 +77,14 @@ if($_SESSION['status'] != "Logged"){
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Tables</span>
+            <span class="nav-link-text ms-1">Data Siswa</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="#">
+          <a class="nav-link  " href="peraturan.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>credit-card</title>
+                <title>Peraturan</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -154,9 +155,9 @@ if($_SESSION['status'] != "Logged"){
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Data Siswa</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Tables</h6>
+          <h6 class="font-weight-bolder mb-0">Data Siswa</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -232,7 +233,7 @@ if($_SESSION['status'] != "Logged"){
                     <div class="d-flex py-1">
                       <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
                         <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <title>credit-card</title>
+                          <title>Peraturan</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
                               <g transform="translate(1716.000000, 291.000000)">
@@ -265,15 +266,48 @@ if($_SESSION['status'] != "Logged"){
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-12">
-          <a href="lihat-siswa.php"><button type="button" class="btn btn-success">Lihat Siswa</button></a>
-          <a href="insert-siswa.php"><button type="button" class="btn btn-success">Insert Siswa</button></a>
-            <div class="card-body px-0 pt-0 pb-2">
-          </div>
-        </div>
-      </div>
-      <!-- <footer class="footer pt-3  ">
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Pelanggaran Siswa</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Nama Siswa</th>
+                        <th>Kelas</th>
+                        <th>Jurusan</th>
+                        <th>Poin</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <?php
+                    foreach ($datas as $data) {
+                    ?>
+                      <tbody>
+                        <tr>
+                          <td><?= $data['nama_siswa']; ?></td>
+                          <td><?= $data['kelas_siswa']; ?></td>
+                          <td><?= $data['jurusan_siswa']; ?></td>
+                          <td></td>
+                          <td><a href="edit-siswa?id=<?php echo $data['id_siswa'] ?>"><button type="button" style="background-color: #cc0e9d;color:white;" class="btn">Edit Data</button></a><a href="delete-siswa?id=<?php echo $data['id_siswa'] ?>"><button type="button" style="background-color: #cc0e9d;color:white;" class="btn">Delete Data</button></a></td>
+                        </tr>
+                      </tbody>
+                  </table>
+                  <div class="container-fluid py-4">
+                    <div class="d-flex flex-row-reverse">
+                      <div class="">
+                        <a href="insert-siswa.php"><button type="button" style="background-color: #cc0e9d;color:white;" class="btn">Insert Siswa</button></a>
+                        <div class="card-body px-0 pt-0 pb-2">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
@@ -305,6 +339,39 @@ if($_SESSION['status'] != "Logged"){
           </div>
         </div>
       </footer> -->
+                  </div>
+                <?php } ?>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <footer class="footer pt-3  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                <!-- © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank"><i class="fa fa-copyright" aria-hidden="true"> Creative Tim</i></a> -->
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <!-- right bottom -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   </main>
   <div class="container-fluid py-4">
@@ -313,13 +380,13 @@ if($_SESSION['status'] != "Logged"){
         <div class="row">
           <div class="col-12">
             <div class="card">
-              
+
             </div>
           </div>
         </div>
       </div>
     </section>
-  </div>  
+  </div>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="fa fa-cog py-2"> </i>
