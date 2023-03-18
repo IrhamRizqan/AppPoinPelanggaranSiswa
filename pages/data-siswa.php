@@ -394,8 +394,7 @@ $datas = mysqli_query($db, "SELECT * FROM `siswa`");
     <div class="card shadow-lg ">
       <div class="card-header pb-0 pt-3 ">
         <div class="float-start">
-          <h5 class="mt-3 mb-0">Soft UI Configurator</h5>
-          <p>See our dashboard options.</p>
+          <h5 class="mt-3 mb-0">User interface settings</h5>
         </div>
         <div class="float-end mt-4">
           <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
@@ -423,7 +422,6 @@ $datas = mysqli_query($db, "SELECT * FROM `siswa`");
         <!-- Sidenav Type -->
         <div class="mt-3">
           <h6 class="mb-0">Sidenav Type</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
         </div>
         <div class="d-flex">
           <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
